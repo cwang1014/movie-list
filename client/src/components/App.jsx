@@ -16,8 +16,11 @@ const { useState } = React;
 
 const App = (props) => {
   const [query, setQuery] = useState('');
-  const [moviesList, setMovies] = useState([]);
-  // const [watched, setWatched] = useState(false);
+  const [moviesList, setMovies] = useState(movies);
+  const [watched, setWatched] = useState(true);
+  // movies.map((movie) => {
+  //   movie.watched = watched;
+  // });
 
   const handleInput = (e) => {
     e.preventDefault();
@@ -31,7 +34,7 @@ const App = (props) => {
   // console.log(moviesList);
   const handleSearch = (e) => {
     e.preventDefault();
-    let target = e.target.userInput.value;
+    let target = e.target.value; //userInput if event originates in field
     let filteredArr = [];
     for (let i = 0; i < moviesList.length; i++) {
       let currMovie = moviesList[i];
@@ -45,19 +48,23 @@ const App = (props) => {
     } else {
       setMovies([{ title: 'Our library does not contain that movie :(' }]);
     }
-    e.target.userInput.value = '';
+    // e.target.value = ''; //userInput if event originates in field
   }
 
   const handleWatched = (e, title) => {
     console.log('title', title);
     let copy = [...moviesList];
     for (let i = 0; i < copy.length; i++) {
+      // console.log(copy[i]);
       if (copy[i].title === title) {
         copy[i].watched = !copy[i].watched;
         break;
       }
     }
-    setMovies(copy);
+    console.log(copy);
+    // debugger;
+    setWatched(!watched);
+    // console.log(watched);
   }
 
   const handleToWatchClick = (e) => {
@@ -84,7 +91,7 @@ const App = (props) => {
     <div id='movie-list-app'>
       <Title />
       <InputField handleInput={handleInput} />
-      <Search handleSearch={handleSearch} />
+      <Search handleSearch={handleSearch} setQuery={setQuery} />
       <MovieList
         movies={moviesList}
         handleWatched={handleWatched}
