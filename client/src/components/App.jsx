@@ -50,21 +50,34 @@ const App = (props) => {
 
   const handleWatched = (e, title) => {
     console.log('title', title);
-    var copy = [...moviesList];
-    for (var i = 0; i < copy.length; i++) {
+    let copy = [...moviesList];
+    for (let i = 0; i < copy.length; i++) {
       if (copy[i].title === title) {
         copy[i].watched = !copy[i].watched;
         break;
       }
     }
     setMovies(copy);
-    // console.log('app e handler', e.target.innerHTML);
-    // let buttonTxt = e.target.innerHTML;
-    // if (buttonTxt === 'To Watch') {
-    //   setWatched(true);
-    // } else {
-    //   setWatched(false);
-    // }
+  }
+
+  const handleToWatchClick = (e) => {
+    let toWatchArr = [];
+    for (var i = 0; i < moviesList.length; i++) {
+      if (!moviesList[i].watched) {
+        toWatchArr.push(moviesList[i]);
+      }
+    }
+    setMovies(toWatchArr);
+  }
+
+  const handleWatchedClick = (e) => {
+    let WatchedArr = [];
+    for (var i = 0; i < moviesList.length; i++) {
+      if (moviesList[i].watched) {
+        WatchedArr.push(moviesList[i]);
+      }
+    }
+    setMovies(WatchedArr);
   }
 
   return (
@@ -72,7 +85,12 @@ const App = (props) => {
       <Title />
       <InputField handleInput={handleInput} />
       <Search handleSearch={handleSearch} />
-      <MovieList movies={moviesList} handleWatched={handleWatched} />
+      <MovieList
+        movies={moviesList}
+        handleWatched={handleWatched}
+        handleToWatchClick={handleToWatchClick}
+        handleWatchedClick={handleWatchedClick}
+      />
     </div>
   )
 };
