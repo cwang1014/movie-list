@@ -11,8 +11,8 @@ const MovieList = ({ movies, handleWatched, handleToWatchClick, handleWatchedCli
       <Watched handleWatchedClick={handleWatchedClick} />{
         movies.map((movie) => {
           return (
-            <div>
-              <Movie movie={movie} key={movie.title} handleWatched={handleWatched} />
+            <div key={movie.title} >
+              <Movie movie={movie} handleWatched={handleWatched} />
             </div>
           )
         })}
