@@ -67,6 +67,7 @@ const App = (props) => {
     if (filteredArr.length >= 0) {
       setFilterMovies(filteredArr);
     }
+    e.target.userInput.value = '';
   }
 
   const handleWatched = (e, title) => {
@@ -104,6 +105,16 @@ const App = (props) => {
     setFilterMovies(WatchedArr);
   }
 
+  const handleToWatchClick = (e) => {
+    let ToWatchArr = [];
+    for (var i = 0; i < moviesList.length; i++) {
+      if (!moviesList[i].watched) {
+        ToWatchArr.push(moviesList[i]);
+      }
+    }
+    setFilterMovies(ToWatchArr);
+  }
+
   return (
     <div id='movie-list-app'>
       <Title />
@@ -114,6 +125,7 @@ const App = (props) => {
         handleWatched={handleWatched}
         handleSeeAll={handleSeeAll}
         handleWatchedClick={handleWatchedClick}
+        handleToWatchClick={handleToWatchClick}
       />
     </div>
   )
