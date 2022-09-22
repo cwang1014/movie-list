@@ -1,14 +1,14 @@
 import React from 'react';
 import Movie from './Movie.jsx';
-import ToWatch from './ToWatch.jsx';
+import SeeAll from './SeeAll.jsx';
 import Watched from './Watched.jsx';
 
-const MovieList = ({ movies, handleWatched, handleToWatchClick, handleWatchedClick }) => {
+const MovieList = ({ movies, handleWatched, handleSeeAll, handleWatchedClick }) => {
   // console.log(movies);
   return (
     <div id='movie-list'>
-      <ToWatch handleToWatchClick={handleToWatchClick} />
-      <Watched handleWatchedClick={handleWatchedClick} />{
+      <Watched handleWatchedClick={handleWatchedClick} />
+      <SeeAll handleSeeAll={handleSeeAll} />{
         movies.map((movie) => {
           return (
             <div key={movie.title} >

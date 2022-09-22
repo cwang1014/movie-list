@@ -17,7 +17,8 @@ const { useState } = React;
 const App = (props) => {
   const [query, setQuery] = useState('');
   const [moviesList, setMovies] = useState(movies);
-  const [watched, setWatched] = useState(true);
+  const [filterMovies, setFilterMovies] = useState(movies);
+  const [watched, setWatched] = useState(false);
   // movies.map((movie) => {
   //   movie.watched = watched;
   // });
@@ -25,9 +26,11 @@ const App = (props) => {
   const handleInput = (e) => {
     e.preventDefault();
     // console.log(e.target.userInput.value);
-    var newObj = { title: e.target.userInput.value, watched: false };
-    var newArr = [...moviesList, newObj];
-    setMovies(newArr);
+    var newObj = { title: e.target.userInput.value, watched: watched };
+    var newMovies = [...moviesList, newObj];
+    var filterMov = [...filterMovies, newObj];
+    setFilterMovies(filterMov);
+    setMovies(newMovies);
     e.target.userInput.value = '';
   }
 
@@ -44,11 +47,26 @@ const App = (props) => {
       // filteredArr.push({ title: 'Our library does not contain that movie :(' });
     }
     if (filteredArr.length >= 0) {
-      setMovies(filteredArr);
+      setFilterMovies(filteredArr);
     } else {
-      setMovies([{ title: 'Our library does not contain that movie :(' }]);
+      setFilterMovies([{ title: 'Our library does not contain that movie :(' }]);
     }
     // e.target.value = ''; //userInput if event originates in field
+  }
+
+  const handleSearchClick = (e) => {
+    e.preventDefault();
+    let target = e.target.userInput.value;
+    let filteredArr = [];
+    for (let i = 0; i < moviesList.length; i++) {
+      let currMovie = moviesList[i];
+      if (currMovie.title.includes(target)) {
+        filteredArr.push(currMovie);
+      }
+    }
+    if (filteredArr.length >= 0) {
+      setFilterMovies(filteredArr);
+    }
   }
 
   const handleWatched = (e, title) => {
@@ -67,14 +85,13 @@ const App = (props) => {
     // console.log(watched);
   }
 
-  const handleToWatchClick = (e) => {
-    let toWatchArr = [];
+  const handleSeeAll = (e) => {
+    console.log(moviesList);
+    let allVids = [];
     for (var i = 0; i < moviesList.length; i++) {
-      if (!moviesList[i].watched) {
-        toWatchArr.push(moviesList[i]);
-      }
+      allVids.push(moviesList[i]);
     }
-    setMovies(toWatchArr);
+    setFilterMovies(allVids);
   }
 
   const handleWatchedClick = (e) => {
@@ -84,18 +101,18 @@ const App = (props) => {
         WatchedArr.push(moviesList[i]);
       }
     }
-    setMovies(WatchedArr);
+    setFilterMovies(WatchedArr);
   }
 
   return (
     <div id='movie-list-app'>
       <Title />
       <InputField handleInput={handleInput} />
-      <Search handleSearch={handleSearch} setQuery={setQuery} />
+      <Search handleSearch={handleSearch} handleSearchClick={handleSearchClick} />
       <MovieList
-        movies={moviesList}
+        movies={filterMovies}
         handleWatched={handleWatched}
-        handleToWatchClick={handleToWatchClick}
+        handleSeeAll={handleSeeAll}
         handleWatchedClick={handleWatchedClick}
       />
     </div>

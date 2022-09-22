@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Search = ({ handleSearch, setQuery, query }) => {
+const Search = ({ handleSearch, handleSearchClick }) => {
   return (
-    <form onSubmit={(e) => { e.preventDefault(); console.log('e.target.userInput', e.target.userInput.value); }}>
+    <form onSubmit={(e) => { handleSearchClick(e); }}>
       <input
         type='text'
         placeholder='Search...'
