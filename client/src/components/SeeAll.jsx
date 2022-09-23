@@ -2,7 +2,7 @@ import React from 'react';
 
 const SeeAll = ({ handleSeeAll }) => {
   return (
-    <button onClick={handleSeeAll}>See All</button>
+    <button id="movie-list-button" onClick={handleSeeAll}>See All</button>
   )
 }
 

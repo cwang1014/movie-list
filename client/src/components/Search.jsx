@@ -2,7 +2,7 @@ import React from 'react';
 
 const Search = ({ handleSearch, handleSearchClick }) => {
   return (
-    <form onSubmit={(e) => { handleSearchClick(e); }}>
+    <form id="search" onSubmit={(e) => { handleSearchClick(e); }}>
       <input
         type='text'
         placeholder='Search...'

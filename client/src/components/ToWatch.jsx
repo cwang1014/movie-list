@@ -2,7 +2,7 @@ import React from 'react';
 
 const ToWatch = ({ handleToWatchClick }) => {
   return (
-    <button onClick={handleToWatchClick}>To Watch</button>
+    <button id="movie-list-button" onClick={handleToWatchClick}>To Watch</button>
   )
 }
 

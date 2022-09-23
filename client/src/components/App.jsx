@@ -12,13 +12,17 @@ var movies = [
   { title: 'Ex Machina' },
 ];
 
+// movies.forEach((element) => {
+//   element.watched = false;
+// });
+
 const { useState } = React;
 
 const App = (props) => {
   const [query, setQuery] = useState('');
   const [moviesList, setMovies] = useState(movies);
   const [filterMovies, setFilterMovies] = useState(movies);
-  const [watched, setWatched] = useState(false);
+  // const [watched, setWatched] = useState(false);
   // movies.map((movie) => {
   //   movie.watched = watched;
   // });
@@ -26,7 +30,7 @@ const App = (props) => {
   const handleInput = (e) => {
     e.preventDefault();
     // console.log(e.target.userInput.value);
-    var newObj = { title: e.target.userInput.value, watched: watched };
+    var newObj = { title: e.target.userInput.value, watched: false };
     var newMovies = [...moviesList, newObj];
     var filterMov = [...filterMovies, newObj];
     setFilterMovies(filterMov);
@@ -48,8 +52,6 @@ const App = (props) => {
     }
     if (filteredArr.length >= 0) {
       setFilterMovies(filteredArr);
-    } else {
-      setFilterMovies([{ title: 'Our library does not contain that movie :(' }]);
     }
     // e.target.value = ''; //userInput if event originates in field
   }
@@ -70,21 +72,7 @@ const App = (props) => {
     e.target.userInput.value = '';
   }
 
-  const handleWatched = (e, title) => {
-    console.log('title', title);
-    let copy = [...moviesList];
-    for (let i = 0; i < copy.length; i++) {
-      // console.log(copy[i]);
-      if (copy[i].title === title) {
-        copy[i].watched = !copy[i].watched;
-        break;
-      }
-    }
-    console.log(copy);
-    // debugger;
-    setWatched(!watched);
-    // console.log(watched);
-  }
+
 
   const handleSeeAll = (e) => {
     console.log(moviesList);
@@ -122,7 +110,6 @@ const App = (props) => {
       <Search handleSearch={handleSearch} handleSearchClick={handleSearchClick} />
       <MovieList
         movies={filterMovies}
-        handleWatched={handleWatched}
         handleSeeAll={handleSeeAll}
         handleWatchedClick={handleWatchedClick}
         handleToWatchClick={handleToWatchClick}

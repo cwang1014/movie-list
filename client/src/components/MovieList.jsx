@@ -4,7 +4,11 @@ import SeeAll from './SeeAll.jsx';
 import Watched from './Watched.jsx';
 import ToWatch from './ToWatch.jsx';
 
-const MovieList = ({ movies, handleWatched, handleSeeAll, handleWatchedClick, handleToWatchClick }) => {
+
+
+const MovieList = ({ movies, handleSeeAll, handleWatchedClick, handleToWatchClick }) => {
+
+
   // console.log(movies);
   return (
     <div id='movie-list'>
@@ -14,7 +18,7 @@ const MovieList = ({ movies, handleWatched, handleSeeAll, handleWatchedClick, ha
         movies.map((movie) => {
           return (
             <div key={movie.title} >
-              <Movie movie={movie} handleWatched={handleWatched} />
+              <Movie movie={movie} movies={movies} />
             </div>
           )
         })}

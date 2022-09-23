@@ -1,18 +1,52 @@
 body {
   font-family: sans-serif, arial;
   /* background-color: aqua; */
+  display: flex;
+  justify-content: center;
+}
+
+#app {
+  padding: 10px;
+  display: flex;
+  color: floralwhite;
+}
+
+h1 {
+  padding: 10px;
+}
+
+form {
+  padding: 10px;
+}
+
+button {
+  border: none;
+}
+
+button#movie-button {
+  border: none;
+  border-radius: 2px;
+}
+
+#movie-list-button {
+  margin-left: 10px;
+}
+
+#movie-button {
+  float: right;
 }
 
 #movie-list-app {
   border-style: solid;
   border-radius: 10px;
   border-color: blueviolet;
-}
-
-#movie-list {
-  align-content: auto;
+  background-color: slateblue;
 }
 
 #movie {
   border-style: solid;
+  border-radius: 3px;
+  padding: 10px;
+  width: 400px;
+  margin: 10px;
 }
