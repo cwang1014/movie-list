@@ -72,15 +72,9 @@ const App = (props) => {
     e.target.userInput.value = '';
   }
 
-
-
   const handleSeeAll = (e) => {
     console.log(moviesList);
-    let allVids = [];
-    for (var i = 0; i < moviesList.length; i++) {
-      allVids.push(moviesList[i]);
-    }
-    setFilterMovies(allVids);
+    setFilterMovies(moviesList);
   }
 
   const handleWatchedClick = (e) => {

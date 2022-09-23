@@ -12,12 +12,13 @@ const Movie = (props) => {
       // console.log(copy[i]);
       if (copy[i].title === title) {
         copy[i].watched = !copy[i].watched;
+        setWatched(copy[i].watched);
         break;
       }
     }
     // console.log(copy);
     // debugger;
-    setWatched(!watched);
+    // setWatched(!watched);
     // console.log(watched);
   }
   // console.log(movie);
@@ -27,7 +28,7 @@ const Movie = (props) => {
       <button
         id="movie-button"
         onClick={(e) => { handleWatched(e, props.movie.title) }}
-      >{watched ? 'Watched' : 'To Watch'}</button>
+      >{props.movie.watched ? 'Watched' : 'To Watch'}</button>
     </div>
   )
 }
