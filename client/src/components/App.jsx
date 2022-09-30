@@ -1,3 +1,4 @@
+const axios = require('axios');
 import React from 'react';
 import Title from './Title.jsx';
 import MovieList from './MovieList.jsx';
@@ -5,27 +6,38 @@ import Search from './Search.jsx';
 import InputField from './InputField.jsx';
 
 var movies = [
-  { title: 'Mean Girls' },
-  { title: 'Hackers' },
-  { title: 'The Grey' },
-  { title: 'Sunshine' },
-  { title: 'Ex Machina' },
+  { title: 'Poke Girls' },
+  { title: 'Tinot' },
+  { title: 'The White' },
+  { title: 'Block' },
+  { title: 'Ex GF' },
 ];
 
-// movies.forEach((element) => {
-//   element.watched = false;
-// });
 
-const { useState } = React;
+const { useState, useEffect } = React;
 
 const App = (props) => {
   const [query, setQuery] = useState('');
   const [moviesList, setMovies] = useState(movies);
   const [filterMovies, setFilterMovies] = useState(movies);
-  // const [watched, setWatched] = useState(false);
-  // movies.map((movie) => {
-  //   movie.watched = watched;
-  // });
+
+  useEffect(
+    () => {
+      axios.get('/api/movies')
+        .then((res) => {
+          console.log('response', res.data);
+          changeMovies(res.data);
+        })
+        .catch((err) => {
+          console.log('error', err);
+        })
+    }, []
+  );
+
+  const changeMovies = (movies) => {
+    setMovies(movies);
+    setFilterMovies(movies);
+  }
 
   const handleInput = (e) => {
     e.preventDefault();
@@ -38,7 +50,7 @@ const App = (props) => {
     e.target.userInput.value = '';
   }
 
-  // console.log(moviesList);
+  console.log(moviesList);
   const handleSearch = (e) => {
     e.preventDefault();
     let target = e.target.value; //userInput if event originates in field

@@ -16,12 +16,8 @@ const Movie = (props) => {
         break;
       }
     }
-    // console.log(copy);
-    // debugger;
-    // setWatched(!watched);
-    // console.log(watched);
   }
-  // console.log(movie);
+
   return (
     <div id="movie">
       {props.movie.title}
