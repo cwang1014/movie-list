@@ -11,10 +11,18 @@ module.exports = {
   },
   post: (req, res) => {
     let body = req.body;
-    // console.log('body', body);
-    models.addMovie(body, (err, res) => {
+    models.addMovie(body, (err) => {
       if (!err) {
         res.status(201).end();
+      }
+    });
+  },
+  put: (req, res) => {
+    // console.log('we made it');
+    let body = req.body;
+    models.updateWatched(body, (err, data) => {
+      if (!err) {
+        res.status(200).end();
       }
     });
   }

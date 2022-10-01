@@ -12,11 +12,21 @@ module.exports = {
     });
   },
   addMovie: (inputObj, callback) => {
-    db.query('INSERT INTO movies (title) VALUES (?)', [inputObj.title], (err) => {
+    db.query('INSERT INTO movies (title) VALUES (?)', [inputObj.title], (err, data) => {
       if (err) {
         callback(err);
       } else {
-        callback();
+        callback(data);
+      }
+    })
+  },
+  updateWatched: (inputObj, callback) => {
+    db.query(`UPDATE movies SET watched=? WHERE title=?`, [inputObj.watched, inputObj.title], (err, data) => {
+      console.log('data', data);
+      if (err) {
+        callback(err);
+      } else {
+        callback(data);
       }
     })
   }

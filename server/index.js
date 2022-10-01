@@ -10,15 +10,21 @@ app.use(express.static(__dirname + '/../client/dist'));
 
 app.get('/api/movies', (req, res) => {
   controller.get(req, res);
-  console.log('!!!!!!GETTING!!!!!!');
+  // console.log('!!!!!!GETTING!!!!!!');
   // console.log('res', res);
 });
 
 app.post('/api/movies', (req, res) => {
   controller.post(req, res);
-  console.log('!!!!!!POSTING!!!!!!');
+  // console.log('!!!!!!POSTING!!!!!!');
   // console.log('res', res);
 });
+
+app.put('/api/movies', (req, res) => {
+  controller.put(req, res);
+  console.log('!!!!!!PUTTING!!!!!!');
+  // console.log('res', res);
+})
 
 // app.all('/api/movies', (req, res) => {
 //   console.log('Hello World');

@@ -4,8 +4,8 @@ USE movielist;
 
 CREATE TABLE movies (
   movieid INT NOT NULL AUTO_INCREMENT,
-  title VARCHAR(40) NOT NULL,
-  watched BOOL NOT NULL,
+  title VARCHAR(40) NOT NULL UNIQUE,
+  watched BOOL NOT NULL DEFAULT false,
   PRIMARY KEY (movieid)
 );
 

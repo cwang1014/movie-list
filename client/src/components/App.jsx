@@ -25,7 +25,7 @@ const App = (props) => {
     () => {
       axios.get('/api/movies')
         .then((res) => {
-          console.log('response', res.data);
+          console.log('useEffect get response', res.data);
           changeMovies(res.data);
         })
         .catch((err) => {
@@ -47,21 +47,17 @@ const App = (props) => {
     })
       .then(axios.get('/api/movies')
         .then((res) => {
-          console.log('response', res.data);
+          console.log('response data from input handler', res.data);
           changeMovies(res.data);
         }))
       .catch((err) => {
         console.log('error', err);
       });
-    // var newObj = { title: e.target.userInput.value, watched: false };
-    // var newMovies = [...moviesList, newObj];
-    // var filterMov = [...filterMovies, newObj];
-    // setFilterMovies(filterMov);
-    // setMovies(newMovies);
+
     e.target.userInput.value = '';
   }
 
-  console.log(moviesList);
+  // console.log(moviesList);
   const handleSearch = (e) => {
     e.preventDefault();
     let target = e.target.value; //userInput if event originates in field
