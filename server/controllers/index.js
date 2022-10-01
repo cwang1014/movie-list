@@ -10,10 +10,14 @@ module.exports = {
     });
   },
   post: (req, res) => {
-    models.addMovie((err, movie) => {
+    let body = req.body;
+    // console.log('body', body);
+    models.addMovie(body, (err, res) => {
       if (!err) {
-        res.status(201).json(movie);
+        res.status(201).end();
       }
     });
   }
 };
+
+// middleman

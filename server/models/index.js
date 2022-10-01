@@ -11,12 +11,12 @@ module.exports = {
       }
     });
   },
-  addMovie: (callback) => {
-    db.query('INSERT INTO movies ()', (err, movie) => {
+  addMovie: (inputObj, callback) => {
+    db.query('INSERT INTO movies (title) VALUES (?)', [inputObj.title], (err) => {
       if (err) {
         callback(err);
       } else {
-        callback(null, movie);
+        callback();
       }
     })
   }

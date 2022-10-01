@@ -41,12 +41,23 @@ const App = (props) => {
 
   const handleInput = (e) => {
     e.preventDefault();
-    // console.log(e.target.userInput.value);
-    var newObj = { title: e.target.userInput.value, watched: false };
-    var newMovies = [...moviesList, newObj];
-    var filterMov = [...filterMovies, newObj];
-    setFilterMovies(filterMov);
-    setMovies(newMovies);
+    // post then get
+    axios.post('/api/movies', {
+      title: e.target.userInput.value
+    })
+      .then(axios.get('/api/movies')
+        .then((res) => {
+          console.log('response', res.data);
+          changeMovies(res.data);
+        }))
+      .catch((err) => {
+        console.log('error', err);
+      });
+    // var newObj = { title: e.target.userInput.value, watched: false };
+    // var newMovies = [...moviesList, newObj];
+    // var filterMov = [...filterMovies, newObj];
+    // setFilterMovies(filterMov);
+    // setMovies(newMovies);
     e.target.userInput.value = '';
   }
 
@@ -69,6 +80,7 @@ const App = (props) => {
   }
 
   const handleSearchClick = (e) => {
+    console.log('clicked search');
     e.preventDefault();
     let target = e.target.userInput.value;
     let filteredArr = [];
